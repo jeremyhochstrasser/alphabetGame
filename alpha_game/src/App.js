@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import { FaHandRock, FaHandPaper, FaHandScissors} from 'react-icons/fa';
 
 function App() {
   return (
@@ -8,18 +9,21 @@ function App() {
       <div>
         <div className="container">
           <div className="player">
-            <div>Player 1: 0</div>
+            <div className="score">Player 1: 0</div>
             <div></div>
           </div>
           <div className="player">
-            <div>Player 2: 0</div>
+            <div className="score">Player 2: 0</div>
             <div></div>
           </div>
         </div>
         <div>
-          <button className="round-btn">Rock</button>
-          <button className="round-btn">Paper</button>
-          <button className="round-btn">Scissors</button>
+          <button className="round-btn">
+            <FaHandRock size={20} /></button>
+          <button className="round-btn">
+            <FaHandPaper size={20}/></button>
+          <button className="round-btn">
+            <FaHandScissors size={20}/></button>
         </div>
         </div>
         <h1>Player 1 Wins</h1>
