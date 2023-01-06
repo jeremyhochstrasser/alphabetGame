@@ -22,12 +22,12 @@ io.on('connection', (socket) => {
 // while the socket is on it is listening for send_message broadcast
     socket.on('send_message', (data) => {
         //what happens after the send_message was recived
-        socket.broadcast.emit('receive_message', data,counter);
+        socket.broadcast.emit('receive_message', data);
+        socket.broadcast.emit('count_update', counter+1);
     });
     socket.on('update_count', (data) => {
         counter = counter +1
         socket.emit('count_update', counter);
-        console.log(counter)
     })
 });
 
