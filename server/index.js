@@ -4,6 +4,7 @@ const http = require('http');
 const { Server } = require('socket.io')
 const cors = require('cors');
 var counter = 0;
+var textHistory = '';
 
 app.use(cors());
 
@@ -22,12 +23,15 @@ io.on('connection', (socket) => {
 // while the socket is on it is listening for send_message broadcast
     socket.on('send_message', (data) => {
         //what happens after the send_message was recived
-        socket.broadcast.emit('receive_message', data);
+        textHistory = textHistory.concat("\n",data.message)
+        socket.broadcast.emit('receive_message', textHistory);
         socket.broadcast.emit('count_update', counter+1);
+        console.log(textHistory)
     });
     socket.on('update_count', (data) => {
         counter = counter +1
         socket.emit('count_update', counter);
+        socket.emit('receive_message', textHistory);
     })
 });
 
